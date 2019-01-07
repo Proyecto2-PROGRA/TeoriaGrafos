@@ -19,6 +19,11 @@ public class Principal {
         ArrayList<Integer> nodosArrayListPosicion = new ArrayList<Integer>();
         ArrayList<Integer> nodosArrayListContadorRepeticiones = new ArrayList<Integer>();
         
+         ArrayList<Integer> nodosArrayListPosicionRecibidos = new ArrayList<Integer>();
+        ArrayList<Integer> nodosArrayListContadorRepeticionesRecibidos = new ArrayList<Integer>();
+        
+        
+        
         
         int[] nodosMasMensajesEnviados = new int[100];
         int[] nodosMasMensajesRecibidos = new int[100];
@@ -87,13 +92,14 @@ public class Principal {
                 nodosArrayListTodoComprimidoFinal.add(nodosParseadosTres);
             }  
         }
+        
         int x=0;
         
-       
+        nodosParseadosCuatro=-1;
         for(int i=0;i<nodosArrayListUno.size();i++){
             
             if(nodosArrayListUno.get(i)!=nodosParseadosCuatro){
-                nodosParseadosCuatro=nodosArrayListUno.get(i);
+                nodosParseadosCuatro=nodosArrayListDos.get(i);
                 
                 nodosArrayListPosicion.add(i);
                  if(i>0){
@@ -107,25 +113,27 @@ public class Principal {
             }
             
         }nodosArrayListContadorRepeticiones.add(x);
-        /*
-        for(int i =0;i<100;i++){
-            int y=0;
-            for(int recorridoVarDos:nodosArrayListContadorRepeticiones){
-                for(int h=0;h<nodosArrayListContadorRepeticiones.size();h++){
-                    recorridoVarDos=nodosArrayListContadorRepeticiones.get(h);
-                    if(recorridoVarDos>numeroMayor){
-                    numeroMayor =recorridoVarDos;
-                    nodosMasMensajesEnviados[i]=nodosArrayListUno.get(nodosArrayListPosicion.get(y));
-                    nodosArrayListContadorRepeticiones.remove(y);
-                    nodosArrayListPosicion.remove(y);
-                }
-                y++;
-                }
-                
+        x=0;
         
+       nodosParseadosCuatro=-1;
+        for(int i=0;i<nodosArrayListDosCopia.size();i++){
+            
+            if(nodosArrayListDosCopia.get(i)!=nodosParseadosCuatro){
+                nodosParseadosCuatro=nodosArrayListDos.get(i);
+                
+                nodosArrayListPosicionRecibidos.add(i);
+                 if(i>0){
+                     
+                    nodosArrayListContadorRepeticionesRecibidos.add(x);
+                 }
+                x=1;
+               
+            }  else{
+                x++;
             }
-        }*/
-   
+            
+        }nodosArrayListContadorRepeticionesRecibidos.add(x);
+        
 
         int l=0;
         int var=-1;
@@ -134,19 +142,28 @@ public class Principal {
         nodosObjetosCantidadRepetidosEnviados=new int[nodosArrayListContadorRepeticiones.size()];
         nodosObjetosPosicionEnviados=new int[nodosArrayListPosicion.size()];
         
-        nodosObjetosCantidadRepetidosRecibidos=new int[nodosArrayListContadorRepeticiones.size()];
-        nodosObjetosPosicionRecibidos=new int[nodosArrayListPosicion.size()];
+        nodosObjetosCantidadRepetidosRecibidos=new int[nodosArrayListContadorRepeticionesRecibidos.size()];
+        nodosObjetosPosicionRecibidos=new int[nodosArrayListPosicionRecibidos.size()];
         int h=0;
-        for(int recorrido:nodosArrayListPosicion){
-                    nodosObjetosPosicionEnviados[h]=recorrido;
+        for(int recorrido:nodosArrayListPosicionRecibidos){
                     nodosObjetosPosicionRecibidos[h]=recorrido;
                     
                     h++;
         }
+        
+        h=0;
+        for(int recorrido:nodosArrayListPosicion){
+                    nodosObjetosPosicionEnviados[h]=recorrido;
+                    h++;
+        }
+        h=0;
+        for(int recorrido:nodosArrayListContadorRepeticionesRecibidos){
+            nodosObjetosCantidadRepetidosRecibidos[h]=recorrido;
+            h++;
+        }
         h=0;
         for(int recorrido:nodosArrayListContadorRepeticiones){
             nodosObjetosCantidadRepetidosEnviados[h]=recorrido;
-            nodosObjetosCantidadRepetidosRecibidos[h]=recorrido;
             h++;
         }
         int recorridoVar;
@@ -173,15 +190,16 @@ public class Principal {
 
         }
         //===============================================
+        numeroMayor=0;
         for(int i=0;i<100;i++){
 
 
-            for(int y=0; y<nodosArrayListContadorRepeticiones.size();y++){
+            for(int y=0; y<nodosArrayListContadorRepeticionesRecibidos.size();y++){
                 recorridoVar=nodosObjetosCantidadRepetidosRecibidos[y];
-                if(numeroMenor<=recorridoVar){
-                    numeroMenor=recorridoVar;
+                if(numeroMayor<=recorridoVar){
+                    numeroMayor=recorridoVar;
                     var = nodosObjetosPosicionRecibidos[y];
-                     nodosMasMensajesRecibidos[i]=nodosArrayListUno.get(var);
+                     nodosMasMensajesRecibidos[i]=nodosArrayListDosCopia.get(var);
                      h=y;
                 }
                 
@@ -191,7 +209,7 @@ public class Principal {
             }
             nodosObjetosPosicionRecibidos[h]=0;
             nodosObjetosCantidadRepetidosRecibidos[h]=0;
-            numeroMenor=0;
+            numeroMayor=0;
 
         }
       
