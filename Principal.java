@@ -19,8 +19,12 @@ public class Principal {
         ArrayList<Integer> nodosArrayListPosicion = new ArrayList<Integer>();
         ArrayList<Integer> nodosArrayListContadorRepeticiones = new ArrayList<Integer>();
         
+        
         int[] nodosMasMensajesEnviados = new int[100];
         int[] nodosMasMensajesRecibidos = new int[100];
+        
+        int[] nodosObjetosCantidadRepetidos;
+        int[] nodosObjetosPosicion;
         
         int contador=0;
         int contadorDeNodosDos=0;
@@ -80,6 +84,7 @@ public class Principal {
             }  
         }
         int x=0;
+        
        
         for(int i=0;i<nodosArrayListUno.size();i++){
             
@@ -116,23 +121,49 @@ public class Principal {
         
             }
         }*/
-        int y=0;
-        int h=0;
+   
+
         int l=0;
         int var=-1;
+    
+
+        nodosObjetosCantidadRepetidos=new int[nodosArrayListContadorRepeticiones.size()];
+        nodosObjetosPosicion=new int[nodosArrayListPosicion.size()];
+        int h=0;
+        for(int recorrido:nodosArrayListPosicion){
+                    nodosObjetosPosicion[h]=recorrido;
+                    h++;
+        }
+        h=0;
+        for(int recorrido:nodosArrayListContadorRepeticiones){
+            nodosObjetosCantidadRepetidos[h]=recorrido;
+            h++;
+        }
+        int recorridoVar;
+        
         for(int i=0;i<100;i++){
-            y=0;
-            for(int recorridoVar : nodosArrayListContadorRepeticiones){
+
+
+            for(int y=0; y<nodosArrayListContadorRepeticiones.size();y++){
+                recorridoVar=nodosObjetosCantidadRepetidos[y];
                 if(numeroMayor<=recorridoVar){
                     numeroMayor=recorridoVar;
-                    var = nodosArrayListPosicion.get(930);
-                    System.out.println(numeroMayor);
+                    var = nodosObjetosPosicion[y];
+                     nodosMasMensajesEnviados[i]=nodosArrayListUno.get(var);
+                     h=y;
                 }
-                y++;
+                
+
+
                 
             }
-
-            nodosMasMensajesEnviados[i]=nodosArrayListUno.get(3);
+            nodosObjetosPosicion[h]=0;
+            nodosObjetosCantidadRepetidos[h]=0;
+            numeroMayor=0;
+            
+            
+           
+            
 
         }
       
@@ -147,6 +178,10 @@ public class Principal {
         System.out.println("Nodos Total: "+nodosArrayListTodoComprimidoFinal.size());
         
         System.out.println(nodosArrayListPosicion.size()+"<== es igual a ==>"+ nodosArrayListContadorRepeticiones.size());
-        System.out.println(nodosMasMensajesEnviados[1]);
+        
+        
+        for(int f=0;f<100;f++){
+            System.out.println(nodosMasMensajesEnviados[f]);
+        }
     }
 }
