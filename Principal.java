@@ -26,7 +26,10 @@ public class Principal {
         
         
         int[] nodosMasMensajesEnviados = new int[100];
+        int[] nodosMasMensajesCantidadEnviados = new int[100];
+        
         int[] nodosMasMensajesRecibidos = new int[100];
+        int[] nodosMasMensajesCantidadRecibidos = new int[100];
         
         int[] nodosObjetosCantidadRepetidosEnviados;
         int[] nodosObjetosPosicionEnviados;
@@ -176,7 +179,9 @@ public class Principal {
                 if(numeroMayor<=recorridoVar){
                     numeroMayor=recorridoVar;
                     var = nodosObjetosPosicionEnviados[y];
+                    var++;
                      nodosMasMensajesEnviados[i]=nodosArrayListUno.get(var);
+                     nodosMasMensajesCantidadEnviados[i]=numeroMayor;
                      h=y;
                 }
                 
@@ -199,7 +204,9 @@ public class Principal {
                 if(numeroMayor<=recorridoVar){
                     numeroMayor=recorridoVar;
                     var = nodosObjetosPosicionRecibidos[y];
+                    var++;
                      nodosMasMensajesRecibidos[i]=nodosArrayListDosCopia.get(var);
+                     nodosMasMensajesCantidadRecibidos[i]=numeroMayor;
                      h=y;
                 }
                 
@@ -227,12 +234,12 @@ public class Principal {
         
         
         for(int f=0;f<100;f++){
-            System.out.println(nodosMasMensajesEnviados[f]);
+            System.out.println(nodosMasMensajesEnviados[f]+"   es =   "+ nodosMasMensajesCantidadEnviados[f]);
         }
         
         System.out.println("//==============================");
          for(int f=0;f<100;f++){
-            System.out.println(nodosMasMensajesRecibidos[f]);
+            System.out.println(nodosMasMensajesRecibidos[f]+"   es=    "+nodosMasMensajesCantidadRecibidos[f]);
         }
     }
 }
